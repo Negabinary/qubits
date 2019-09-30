@@ -1,0 +1,8 @@
+modLoader="javafml" #mandatory
+loaderVersion="[28.1]" #mandatory. 26 for 1.14.2, 27 for 1.14.3
+credits="" #optional
+[[mods]] #mandatory
+modId="qubits" #mandatory
+version="1.0" #mandatory
+displayName="Qubits" #mandatory
+description='''Qubits in Minecraft.'''
