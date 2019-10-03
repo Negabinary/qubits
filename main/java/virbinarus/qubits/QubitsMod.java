@@ -1,16 +1,23 @@
 package virbinarus.qubits;
 
 
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import virbinarus.qubits.block.QubitBlockTileEntity;
+import virbinarus.qubits.command.QubitsCommand;
 
 /**
  * The main class of the mod, this is the class that looks like a mod to forge.
  */
 
 @Mod(QubitsMod.MOD_ID)
+@Mod.EventBusSubscriber(modid = QubitsMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class QubitsMod {
 
     /**
@@ -23,4 +30,13 @@ public class QubitsMod {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    @SubscribeEvent
+    public void serverStarting(FMLServerStartingEvent event) {
+        new QubitsCommand(event.getCommandDispatcher());
+    }
+
+    @SubscribeEvent
+    public void registerTileEntities(RegistryEvent.Register<TileEntityType<?>> event) {
+        event.getRegistry().register(TileEntityType.Builder.create(QubitBlockTileEntity::new).build(null).setRegistryName(QubitsMod.MOD_ID, "qubit_block_tile_entity"));
+    }
 }

@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "lit_level=0": { "model": "qubits:block/qubit_block_0" },
+    "lit_level=1": { "model": "qubits:block/qubit_block_1" },
+    "lit_level=2": { "model": "qubits:block/qubit_block_2" },
+    "lit_level=3": { "model": "qubits:block/qubit_block_3" },
+    "lit_level=4": { "model": "qubits:block/qubit_block_4" },
+    "lit_level=5": { "model": "qubits:block/qubit_block_5" },
+    "lit_level=6": { "model": "qubits:block/qubit_block_6" },
+    "lit_level=7": { "model": "qubits:block/qubit_block_7" },
+    "lit_level=8": { "model": "qubits:block/qubit_block_8" },
+    "lit_level=9": { "model": "qubits:block/qubit_block_9" },
+    "lit_level=10": { "model": "qubits:block/qubit_block_10"}
+  }
+}

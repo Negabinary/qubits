@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "lit_level=0": { "model": "block/redstone_lamp" },
-    "lit_level=15": { "model": "block/redstone_lamp_on" }
-  }
-}

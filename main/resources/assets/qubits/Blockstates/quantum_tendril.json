@@ -1,6 +1,38 @@
 {
   "variants": {
-    "": { "model": "block/quantum_tendril_line" }
+    "connected=false,east=none,north=none,south=none,west=none": { "model": "qubits:block/quantum_tendril_none"},
+    "connected=true,east=none,north=from,south=none,west=none": { "model": "qubits:block/quantum_tendril_n"},
+    "connected=true,east=to,north=from,south=none,west=none": { "model": "qubits:block/quantum_tendril_nw"},
+    "connected=true,east=to,north=from,south=none,west=to": { "model": "qubits:block/quantum_tendril_new"},
+    "connected=true,east=none,north=from,south=to,west=none": { "model": "qubits:block/quantum_tendril_ns"},
+    "connected=true,east=to,north=from,south=to,west=none": { "model": "qubits:block/quantum_tendril_nsw"},
+    "connected=true,east=to,north=from,south=to,west=to": { "model": "qubits:block/quantum_tendril_nsew"},
+    "connected=true,east=none,north=from,south=none,west=to": { "model": "qubits:block/quantum_tendril_ne"},
+    "connected=true,east=none,north=from,south=to,west=to": { "model": "qubits:block/quantum_tendril_nse"},
+    "connected=true,east=from,north=none,south=none,west=none": { "model": "qubits:block/quantum_tendril_n","y": 90},
+    "connected=true,east=from,north=none,south=to,west=none": { "model": "qubits:block/quantum_tendril_nw","y": 90},
+    "connected=true,east=from,north=to,south=to,west=none": { "model": "qubits:block/quantum_tendril_new","y": 90},
+    "connected=true,east=from,north=none,south=none,west=to": { "model": "qubits:block/quantum_tendril_ns","y": 90},
+    "connected=true,east=from,north=none,south=to,west=to": { "model": "qubits:block/quantum_tendril_nsw","y": 90},
+    "connected=true,east=from,north=to,south=to,west=to": { "model": "qubits:block/quantum_tendril_nsew","y": 90},
+    "connected=true,east=from,north=to,south=none,west=none": { "model": "qubits:block/quantum_tendril_ne","y": 90},
+    "connected=true,east=from,north=to,south=none,west=to": { "model": "qubits:block/quantum_tendril_nse","y": 90},
+    "connected=true,east=none,north=none,south=from,west=none": { "model": "qubits:block/quantum_tendril_n","y": 180},
+    "connected=true,east=none,north=none,south=from,west=to": { "model": "qubits:block/quantum_tendril_nw","y": 180},
+    "connected=true,east=to,north=none,south=from,west=to": { "model": "qubits:block/quantum_tendril_new","y": 180},
+    "connected=true,east=none,north=to,south=from,west=none": { "model": "qubits:block/quantum_tendril_ns","y": 180},
+    "connected=true,east=none,north=to,south=from,west=to": { "model": "qubits:block/quantum_tendril_nsw","y": 180},
+    "connected=true,east=to,north=to,south=from,west=to": { "model": "qubits:block/quantum_tendril_nsew","y": 180},
+    "connected=true,east=to,north=none,south=from,west=none": { "model": "qubits:block/quantum_tendril_ne","y": 180},
+    "connected=true,east=to,north=to,south=from,west=none": { "model": "qubits:block/quantum_tendril_nse","y": 180},
+    "connected=true,east=none,north=none,south=none,west=from": { "model": "qubits:block/quantum_tendril_n","y": 270},
+    "connected=true,east=none,north=to,south=none,west=from": { "model": "qubits:block/quantum_tendril_nw","y": 270},
+    "connected=true,east=none,north=to,south=to,west=from": { "model": "qubits:block/quantum_tendril_new","y": 270},
+    "connected=true,east=to,north=none,south=none,west=from": { "model": "qubits:block/quantum_tendril_ns","y": 270},
+    "connected=true,east=to,north=to,south=none,west=from": { "model": "qubits:block/quantum_tendril_nsw","y": 270},
+    "connected=true,east=to,north=to,south=to,west=from": { "model": "qubits:block/quantum_tendril_nsew","y": 270},
+    "connected=true,east=none,north=none,south=to,west=from": { "model": "qubits:block/quantum_tendril_ne","y": 270},
+    "connected=true,east=to,north=none,south=to,west=from": { "model": "qubits:block/quantum_tendril_nse","y": 270}
   }
 }
 

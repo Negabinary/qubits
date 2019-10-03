@@ -1,8 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "qubits:block/quantum_tendril_spiral",
-    "texture": "qubits:block/quantum_tendril_line"
+    "particle": "qubits:block/tendril_nse",
+    "texture": "qubits:block/tendril_nse"
   },
   "elements": [
     {   "from": [ 0, 0.25, 0 ],

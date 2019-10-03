@@ -1,7 +1,10 @@
 package virbinarus.qubits;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +20,8 @@ public class ModItems {
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(
                 new Item(new Item.Properties()).setRegistryName(QubitsMod.MOD_ID, "quantum_dust"),
-                new BlockItem(ModBlocks.QUBIT_BLOCK, new Item.Properties()).setRegistryName("qubit_block")
+                new BlockItem(ModBlocks.QUBIT_BLOCK, new Item.Properties()).setRegistryName("qubit_block"),
+                new BlockItem(ModBlocks.QUANTUM_TENDRIL, new Item.Properties()).setRegistryName("quantum_tendril")
         );
     }
 }
