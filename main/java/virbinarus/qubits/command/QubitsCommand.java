@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import virbinarus.qubits.block.QubitBlockTileEntity;
+import virbinarus.qubits.internal.Qubit;
 
 public class QubitsCommand {
     public QubitsCommand(CommandDispatcher<CommandSource> dispatcher) {
@@ -38,7 +39,7 @@ public class QubitsCommand {
                                             World world = ctx.getSource().getWorld();
                                             BlockPos pos = BlockPosArgument.getBlockPos(ctx, "pos");
                                             QubitBlockTileEntity tileEntity = (QubitBlockTileEntity) world.getTileEntity(pos);
-                                            tileEntity.qubit.applyNot(world);
+                                            tileEntity.qubit.applyNot(new Qubit[]{}, world);
                                             return 0;
                                         })
 
@@ -51,7 +52,7 @@ public class QubitsCommand {
                                             World world = ctx.getSource().getWorld();
                                             BlockPos pos = BlockPosArgument.getBlockPos(ctx, "pos");
                                             QubitBlockTileEntity tileEntity = (QubitBlockTileEntity) world.getTileEntity(pos);
-                                            tileEntity.qubit.applyH(world);
+                                            tileEntity.qubit.applyH(new Qubit[]{}, world);
                                             return 0;
                                         })
 
@@ -65,8 +66,9 @@ public class QubitsCommand {
                                                     World world = ctx.getSource().getWorld();
                                                     BlockPos pos1 = BlockPosArgument.getBlockPos(ctx, "pos1");
                                                     BlockPos pos2 = BlockPosArgument.getBlockPos(ctx, "pos2");
-                                                    ((QubitBlockTileEntity) world.getTileEntity(pos1)).qubit.getQubitSystem().merge(
-                                                            ((QubitBlockTileEntity) world.getTileEntity(pos2)).qubit.getQubitSystem()
+                                                    ((QubitBlockTileEntity) world.getTileEntity(pos1)).qubit.getQubitSystem(world).merge(
+                                                            ((QubitBlockTileEntity) world.getTileEntity(pos2)).qubit.getQubitSystem(world),
+                                                            world
                                                     );
                                                     return 0;
                                                 })

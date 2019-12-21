@@ -30,15 +30,21 @@ public class QubitBlockTileEntity extends TileEntity {
 
     @Override
     public void read(CompoundNBT compound) {
-
-        qubit.read(world, compound.getCompound("qubit"));
+        System.out.println("RE");
+        if (compound.contains("qubit")) {
+            qubit.read(world, compound.getCompound("qubit"));
+        }
         super.read(compound);
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
-
+        System.out.println("WR");
         compound.put("qubit",qubit.write());
         return super.write(compound);
+    }
+
+    public Qubit getQubit() {
+        return qubit;
     }
 }

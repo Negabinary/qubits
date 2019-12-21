@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 public interface IQubitReference {
     public void updateLocalState(double newState, World world);
 
-    public Qubit getQubit();
+    public Qubit getQubit(World world);
 
     public void markDirty(World world);
 

@@ -8,11 +8,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import virbinarus.qubits.block.QubitBlockTileEntity;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class QubitSystem {
+    private Random rand = new Random();
     private double[] worldRealParts;
     private double[] worldImaginaryParts;
     private List<IQubitReference> qubitReferences;
@@ -38,52 +37,117 @@ public class QubitSystem {
     }
 
     private void updateAll(World world) {
+        System.out.println(this);
+        System.out.println(Arrays.toString(worldRealParts));
         for (IQubitReference qubitReference : qubitReferences) {
-            qubitReference.updateLocalState(worldRealParts[1], world);
+            qubitReference.updateLocalState(getLocalState(qubitReference.getQubit(world).getQubitID()), world);
         }
     }
 
-    public void applyNot(int qubitID, World world) {
-        double temp = worldRealParts[0];
-        worldRealParts[0] = worldRealParts[1];
-        worldRealParts[1] = temp;
+    public double getLocalState(int qubitID) {
+        int posBit = 1 << qubitID;
+        double localState = 0;
+        for (int worldID = 0; worldID < worldRealParts.length; worldID++) {
+            if ((worldID | posBit) == worldID) {
+                localState += worldRealParts[worldID] * worldRealParts[worldID];
+                localState += worldImaginaryParts[worldID] * worldImaginaryParts[worldID];
+            }
+        }
+        return localState;
+    }
+
+    public void applyNot(int qubitID, int[] controlIDs, World world) {
+        int posBit = 1 << qubitID;
+        int[] controlPosBits = Arrays.stream(controlIDs).map(x -> 1 << x).toArray();
+        for (int worldID = 0; worldID < worldRealParts.length; worldID++) {
+            if ((worldID & posBit) == 0
+                    && controlsMatch(worldID, controlPosBits)) {
+                double tempR = worldRealParts[worldID];
+                double tempI = worldImaginaryParts[worldID];
+                worldRealParts[worldID] = worldRealParts[worldID | posBit];
+                worldImaginaryParts[worldID] = worldImaginaryParts[worldID | posBit];
+                worldRealParts[worldID | posBit] = tempR;
+                worldImaginaryParts[worldID | posBit] = tempI;
+            }
+        }
         updateAll(world);
     }
 
-    public void applyH(int qubitID, World world) {
-        double temp1 = worldRealParts[0];
-        double temp2 = worldRealParts[1];
-        worldRealParts[0] = Math.sqrt(0.5d) * (temp1 + temp2);
-        worldRealParts[1] = Math.sqrt(0.5d) * (temp1 - temp2);
+    public void applyH(int qubitID, int[] controlIDs, World world) {
+        int posBit = 1 << qubitID;
+        int[] controlPosBits = Arrays.stream(controlIDs).map(x -> 1 << x).toArray();
+        for (int worldID = 0; worldID < worldRealParts.length; worldID++) {
+            if ((worldID & posBit) == 0
+                    && controlsMatch(worldID, controlPosBits)) {
+                double tempR1 = worldRealParts[worldID];
+                double tempI1 = worldImaginaryParts[worldID];
+                double tempR2 = worldRealParts[worldID | posBit];
+                double tempI2 = worldImaginaryParts[worldID | posBit];
+                worldRealParts[worldID] = Math.sqrt(0.5) * (tempR1 + tempR2);
+                worldImaginaryParts[worldID] = Math.sqrt(0.5) * (tempI1 + tempI2);
+                worldRealParts[worldID | posBit] = Math.sqrt(0.5) * (tempR1 - tempR2);;
+                worldImaginaryParts[worldID | posBit] = Math.sqrt(0.5) * (tempI1 - tempI2);;
+            }
+        }
         updateAll(world);
     }
 
-    public void merge(QubitSystem other) {
-        System.out.println("ONE");
+    public void applyMeasure(int qubitID, World world) {
+        double probability = getLocalState(qubitID);
+        double random = rand.nextDouble();
+        boolean result = random > probability;
+        double probabilityOfResult;
+        if (!result) {
+            probabilityOfResult = 1 - probability;
+        } else {
+            probabilityOfResult = probability;
+        }
+
+        int posBit = 1 << qubitID;
+        for (int worldID = 0; worldID < worldRealParts.length; worldID++) {
+            if (((worldID & posBit) == 0) != result) {
+                worldRealParts[worldID] = worldRealParts[worldID] / Math.sqrt(probabilityOfResult);
+                worldImaginaryParts[worldID] = worldImaginaryParts[worldID] / Math.sqrt(probabilityOfResult);
+            } else {
+                worldRealParts[worldID] = 0;
+                worldImaginaryParts[worldID] = 0;
+            }
+        }
+        updateAll(world);
+    }
+
+    private boolean controlsMatch(int worldID, int[] controlPosBits) {
+        for (int controlPB: controlPosBits) {
+            if ((controlPB & worldID) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void merge(QubitSystem other, World world) {
         int newArrayLength = worldRealParts.length * other.worldRealParts.length;
         double[] newRealParts = new double[newArrayLength];
         double[] newImaginaryParts = new double[newArrayLength];
-        System.out.println("TWO");
         for (int i = 0; i < worldRealParts.length; i++) {
             for (int j = 0; j < other.worldRealParts.length; j++) {
-                int k = i * other.worldRealParts.length + j;
+                int k = i + j * worldRealParts.length;
                 newRealParts[k] = worldRealParts[i] * other.worldRealParts[j] - worldImaginaryParts[i] * other.worldImaginaryParts[j];
-                newImaginaryParts[k] = worldRealParts[i] * other.worldImaginaryParts[j] + worldImaginaryParts[i] * other.worldImaginaryParts[i];
+                newImaginaryParts[k] = worldRealParts[i] * other.worldImaginaryParts[j] + worldImaginaryParts[i] * other.worldImaginaryParts[j];
             }
         }
         worldRealParts = newRealParts;
         worldImaginaryParts = newImaginaryParts;
-        System.out.println("THREE");
-        Qubit holderQubitRef = qubitReferences.get(0).getQubit();
-        System.out.println("THREE AND A HALF");
-        IQubitReference holderQubitReference = qubitReferences.get(0).getQubit().systemHolderReference;
-        System.out.println("FOUR");
+        Qubit holderQubitRef = qubitReferences.get(0).getQubit(world);
+        IQubitReference holderQubitReference = qubitReferences.get(0).getQubit(world).systemHolderReference;
+        int originalQubitCount = qubitReferences.size();
         for (IQubitReference qubitReference : other.qubitReferences) {
-            qubitReference.getQubit().isSystemHolder = false;
-            qubitReference.getQubit().systemHolderReference = holderQubitReference;
+            qubitReference.getQubit(world).isSystemHolder = false;
+            qubitReference.getQubit(world).systemHolderReference = holderQubitReference;
+            qubitReference.getQubit(world).qubitSystem = this;
+            qubitReference.getQubit(world).qubitID += originalQubitCount;
             qubitReferences.add(qubitReference);
         }
-        System.out.println("FIVE");
     }
 
     public CompoundNBT write() {

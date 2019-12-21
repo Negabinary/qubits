@@ -11,21 +11,16 @@ import virbinarus.qubits.block.QubitBlockTileEntity;
 public class BlockQubitReference implements IQubitReference {
     QubitBlockTileEntity tileEntity;
     BlockPos pos;
-    World world;
 
     public BlockQubitReference(QubitBlockTileEntity newTileEntity) {
         tileEntity = newTileEntity;
     }
 
-    public BlockQubitReference(World newWorld, CompoundNBT compound) {
+    public BlockQubitReference(CompoundNBT compound) {
         pos = new BlockPos(compound.getInt("x"), compound.getInt("y"), compound.getInt("z"));
-        world = newWorld;
     }
 
-    public QubitBlockTileEntity getTileEntity() {
-        System.out.println(tileEntity);
-        System.out.println(world);
-        System.out.println(pos);
+    public QubitBlockTileEntity getTileEntity(World world) {
         if (tileEntity == null) {
             tileEntity = (QubitBlockTileEntity) world.getTileEntity(pos);
         }
@@ -40,19 +35,18 @@ public class BlockQubitReference implements IQubitReference {
     }
 
     public void updateLocalState(double newState, World world) {
-        int litLevel = (int) Math.round(newState * newState * 10);
-        System.out.println(litLevel);
+        int litLevel = (int) Math.round(newState * 10);
 
-        BlockState blockState = getTileEntity().getBlockState();
+        BlockState blockState = getTileEntity(world).getBlockState();
 
-        getTileEntity().getWorld().setBlockState(
-                getTileEntity().getPos(), blockState.with(QubitBlock.LIT_LEVEL, litLevel)
+        world.setBlockState(
+                getTileEntity(world).getPos(), blockState.with(QubitBlock.LIT_LEVEL, litLevel)
         );
     }
 
     @Override
     public void markDirty(World world) {
-        getTileEntity().markDirty();
+        getTileEntity(world).markDirty();
     }
 
     @Override
@@ -67,10 +61,7 @@ public class BlockQubitReference implements IQubitReference {
     }
 
     @Override
-    public Qubit getQubit() {
-        System.out.println("ALPHA");
-        System.out.println(getTileEntity());
-        System.out.println("BETA");
-        return getTileEntity().qubit;
+    public Qubit getQubit(World world) {
+        return getTileEntity(world).qubit;
     }
 }

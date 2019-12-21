@@ -5,7 +5,8 @@ import net.minecraft.util.IStringSerializable;
 public enum TendrilConnectionEnum implements IStringSerializable {
     FROM("from"),
     TO("to"),
-    NONE("none");
+    NONE("none"),
+    CONTROL("control");
 
     private final String name;
 

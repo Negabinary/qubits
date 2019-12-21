@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "qubits:q_not_gate",
+    "qubits:q_h_gate"
+  ]
+}
