@@ -1,12 +1,11 @@
-package virbinarus.qubits.internal;
+package negabinary.qubits.internal;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import virbinarus.qubits.block.QubitBlock;
-import virbinarus.qubits.block.QubitBlockTileEntity;
+import negabinary.qubits.block.QubitBlock;
+import negabinary.qubits.block.QubitBlockTileEntity;
 
 public class BlockQubitReference implements IQubitReference {
     QubitBlockTileEntity tileEntity;

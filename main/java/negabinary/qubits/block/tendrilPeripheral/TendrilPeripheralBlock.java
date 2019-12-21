@@ -1,6 +1,7 @@
-package virbinarus.qubits.block.tendrilPeripheral;
+package negabinary.qubits.block.tendrilPeripheral;
 
 import com.google.common.collect.Maps;
+import negabinary.qubits.internal.Qubit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -14,13 +15,11 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import virbinarus.qubits.QubitsMod;
-import virbinarus.qubits.block.QubitBlock;
-import virbinarus.qubits.block.QubitBlockTileEntity;
-import virbinarus.qubits.internal.Qubit;
+import negabinary.qubits.QubitsMod;
+import negabinary.qubits.block.QubitBlock;
+import negabinary.qubits.block.QubitBlockTileEntity;
 
 import java.util.*;
 

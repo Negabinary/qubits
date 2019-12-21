@@ -1,10 +1,10 @@
-package virbinarus.qubits;
+package negabinary.qubits;
 
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import virbinarus.qubits.block.QubitBlockTileEntity;
+import negabinary.qubits.block.QubitBlockTileEntity;
 
 
 @Mod.EventBusSubscriber(modid = QubitsMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)

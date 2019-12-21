@@ -1,5 +1,6 @@
-package virbinarus.qubits.block.tendrilPeripheral;
+package negabinary.qubits.block.tendrilPeripheral;
 
+import negabinary.qubits.internal.Qubit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.BooleanProperty;
@@ -8,9 +9,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import virbinarus.qubits.block.QubitBlock;
-import virbinarus.qubits.block.QubitBlockTileEntity;
-import virbinarus.qubits.internal.Qubit;
+import negabinary.qubits.block.QubitBlock;
 
 import java.util.Arrays;
 import java.util.LinkedList;

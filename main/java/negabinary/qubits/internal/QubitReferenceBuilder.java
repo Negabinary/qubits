@@ -1,4 +1,4 @@
-package virbinarus.qubits.internal;
+package negabinary.qubits.internal;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;

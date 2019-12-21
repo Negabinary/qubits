@@ -1,9 +1,7 @@
-package virbinarus.qubits.internal;
+package negabinary.qubits.internal;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
-
-import java.util.UUID;
 
 public class Qubit {
     public int qubitID;

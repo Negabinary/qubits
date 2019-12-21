@@ -1,5 +1,6 @@
-package virbinarus.qubits;
+package negabinary.qubits;
 
+import negabinary.qubits.block.tendrilPeripheral.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
@@ -8,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 import virbinarus.qubits.block.tendrilPeripheral.*;
-import virbinarus.qubits.block.QubitBlock;
+import negabinary.qubits.block.QubitBlock;
 
 @Mod.EventBusSubscriber(modid = QubitsMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(QubitsMod.MOD_ID)

@@ -1,20 +1,15 @@
-package virbinarus.qubits.command;
+package negabinary.qubits.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import negabinary.qubits.block.QubitBlockTileEntity;
+import negabinary.qubits.internal.Qubit;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.BlockPosArgument;
-import net.minecraft.command.arguments.Vec3Argument;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import virbinarus.qubits.block.QubitBlockTileEntity;
-import virbinarus.qubits.internal.Qubit;
 
 public class QubitsCommand {
     public QubitsCommand(CommandDispatcher<CommandSource> dispatcher) {

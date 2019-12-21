@@ -1,4 +1,4 @@
-package virbinarus.qubits.block;
+package negabinary.qubits.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

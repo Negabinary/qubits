@@ -1,4 +1,4 @@
-package virbinarus.qubits;
+package negabinary.qubits;
 
 
 import net.minecraft.tileentity.TileEntityType;
@@ -9,8 +9,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import virbinarus.qubits.block.QubitBlockTileEntity;
-import virbinarus.qubits.command.QubitsCommand;
+import negabinary.qubits.block.QubitBlockTileEntity;
+import negabinary.qubits.command.QubitsCommand;
 
 /**
  * The main class of the mod, this is the class that looks like a mod to forge.

@@ -1,4 +1,4 @@
-package virbinarus.qubits.block.tendrilPeripheral;
+package negabinary.qubits.block.tendrilPeripheral;
 
 import net.minecraft.util.IStringSerializable;
 
