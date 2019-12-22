@@ -122,6 +122,9 @@ public class TendrilPeripheralBlock extends Block {
     }
 
     protected BlockState updateTendrilConnections(BlockState stateIn, Direction facing, Boolean isUp, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.UP || facing == facing.DOWN) {
+            return stateIn;
+        }
         if (stateIn.get(CONNECTED)) {
             TendrilConnectionEnum currentConnection = stateIn.get(FACING_PROPERTY_MAP.get(facing));
             if (currentConnection == TendrilConnectionEnum.FROM) {
@@ -207,8 +210,8 @@ public class TendrilPeripheralBlock extends Block {
         getQubitBlockTileEntity(currentState, currentPos, world).qubit.applyH(controlQubits, world);
     }
 
-    public void applyMeasure(BlockState currentState, BlockPos currentPos, World world) {
-        getQubitBlockTileEntity(currentState, currentPos, world).qubit.applyMeasure(world);
+    public boolean applyMeasure(BlockState currentState, BlockPos currentPos, World world) {
+        return getQubitBlockTileEntity(currentState, currentPos, world).qubit.applyMeasure(world);
     }
 
     public QubitBlockTileEntity getQubitBlockTileEntity(BlockState currentState, BlockPos currentPos, World world) {

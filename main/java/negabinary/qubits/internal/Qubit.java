@@ -24,7 +24,6 @@ public class Qubit {
     }
 
     public CompoundNBT write() {
-        System.out.println("WRITING");
         CompoundNBT compound = new CompoundNBT();
         compound.putByte("is_system_holder", (byte)(isSystemHolder? 1 : 0));
         if (isSystemHolder) {
@@ -36,9 +35,7 @@ public class Qubit {
     }
 
     public void read(World world, CompoundNBT compound) {
-        System.out.println("READING");
         isSystemHolder = compound.getByte("is_system_holder") == 1;
-        System.out.println(compound.getCompound("qubit_system_ref"));
         systemHolderReference = QubitReferenceBuilder.readRef(world, compound.getCompound("qubit_system_ref"));
         if (isSystemHolder) {
             if (qubitSystem != null) {
@@ -60,9 +57,10 @@ public class Qubit {
         systemHolderReference.markDirty(world);
     }
 
-    public void applyMeasure(World world) {
-        getQubitSystem(world).applyMeasure(qubitID, world);
+    public boolean applyMeasure(World world) {
+        boolean result = getQubitSystem(world).applyMeasure(qubitID, world);
         systemHolderReference.markDirty(world);
+        return result;
     }
 
     public int getQubitID() {
@@ -76,6 +74,7 @@ public class Qubit {
             Qubit qubit = qubits[i];
             if (qubit.getQubitSystem(world) != getQubitSystem(world)) {
                 qubitSystem.merge(qubit.getQubitSystem(world), world);
+                System.out.println("MERG");
             }
             qubitIDs[i] = qubit.getQubitID();
         }

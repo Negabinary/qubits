@@ -35,7 +35,9 @@ public abstract class QGate extends TendrilPeripheralBlock {
         boolean hasPower = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(pos.down());
         boolean isTriggered = state.get(TRIGGERED);
         if (hasPower && !isTriggered) {
-            if (state.get(CONNECTED)) {applyGate(state, pos, worldIn);}
+            if (state.get(CONNECTED)) {
+                state = applyGate(state, pos, worldIn);
+            }
             worldIn.setBlockState(pos, state.with(TRIGGERED, true), 4);
         } else if (!hasPower && isTriggered) {
             worldIn.setBlockState(pos, state.with(TRIGGERED, false),4);
@@ -63,7 +65,7 @@ public abstract class QGate extends TendrilPeripheralBlock {
         return blockState.func_224755_d(worldIn, blockPos, Direction.UP);
     }
 
-    public abstract void applyGate(BlockState blockState, BlockPos pos, World worldIn);
+    public abstract BlockState applyGate(BlockState blockState, BlockPos pos, World worldIn);
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);

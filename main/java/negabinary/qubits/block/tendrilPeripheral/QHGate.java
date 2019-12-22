@@ -21,8 +21,9 @@ public class QHGate extends QGate {
         return AABB;
     }
 
-    public void applyGate(BlockState blockState, BlockPos pos, World worldIn) {
+    public BlockState applyGate(BlockState blockState, BlockPos pos, World worldIn) {
         applyH(blockState, pos, getControlQubits(pos, worldIn), worldIn);
+        return blockState;
     }
 
     public BlockRenderLayer getRenderLayer() {

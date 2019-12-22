@@ -36,8 +36,6 @@ public class QubitSystem {
     }
 
     private void updateAll(World world) {
-        System.out.println(this);
-        System.out.println(Arrays.toString(worldRealParts));
         for (IQubitReference qubitReference : qubitReferences) {
             qubitReference.updateLocalState(getLocalState(qubitReference.getQubit(world).getQubitID()), world);
         }
@@ -91,10 +89,10 @@ public class QubitSystem {
         updateAll(world);
     }
 
-    public void applyMeasure(int qubitID, World world) {
+    public boolean applyMeasure(int qubitID, World world) {
         double probability = getLocalState(qubitID);
         double random = rand.nextDouble();
-        boolean result = random > probability;
+        boolean result = random < probability;
         double probabilityOfResult;
         if (!result) {
             probabilityOfResult = 1 - probability;
@@ -113,6 +111,7 @@ public class QubitSystem {
             }
         }
         updateAll(world);
+        return result;
     }
 
     private boolean controlsMatch(int worldID, int[] controlPosBits) {
