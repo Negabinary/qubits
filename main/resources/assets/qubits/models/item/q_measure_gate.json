@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "qubits:block/q_measure_gate"
+    "layer0": "qubits:block/measure_gate"
   }
 }
