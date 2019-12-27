@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Russo+One&display=swap');
+
+body {
+  color: #262626;
+  background-color: rgb(230, 230, 230);
+  font-family: roboto, sans-serif;
+  font-size: 16pt;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+a {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+img {
+  width: auto;
+  transform: scale(0.6);
+  max-width:100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-family: 'Russo one';
+  border-bottom: 3px solid #262626;
+}
+
+h2 {
+  margin-top: 0;
+  font-family: 'Russo one';
+  border-bottom: 2px solid #262626;
+}
+
+h3 {
+  text-align: center;
+  font-family: 'Russo one';
+  font-size: 72;
+}
+
+.mathsbox {
+  background-color: rgb(217,217,217);
+  border: 3px solid #262626;
+  padding: 10px;
+}

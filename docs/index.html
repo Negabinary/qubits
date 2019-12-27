@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="master.css">
+
+<body>
+  <h3> Qubits Mod Blocks </h3>
+  
+  <h1 id="block">Qubit Block</h1>
+  <img src="11.png" alt="">
+  The <a href = #block>qubit block</a> is the most important block in the mod, as all other blocks connect to it. The <a href = #block>qubit block</a> represents one quantum switch, which can be on, off or a combination of the two. The number on the block shows the probability that it will be on when <a href = #measurement>measured</a> (rounded to the nearest 10%).
+  <img src="12.png" alt="">
+  <div class=mathsbox id=vector>
+    <h2> Maths </h2>
+    There is a lot more to a qubit’s state than just it’s probability however. Each qubit on its own is stored with two numbers. (<a href=#multiqubit>It gets even more complicated</a> when qubits interact with each other.)
+    <img src="13.png" alt="">
+    If you square the top number, you get the probability that when <a href = #measurement>measured</a>, this qubit will be on. If you square the bottom number, you get the probability that when <a href = #measurement>measured</a>, this qubit will be off.
+    These numbers can also be negative or complex. (If it is complex, the magnitude squared is the probability.)
+  </div>
+
+  <h1 id="tendril"> Quantum Tendril </h1>
+  <img src="21.png" alt="">
+  <a href = #tendril>Quantum tendrils</a> act as an extension to the <a href = #block>qubit block</a>, allowing gates to be connected to it. <a href = #block>Qubit blocks</a> cannot be connected together with tendrils.
+  <br>
+  <a href = #tendril>Quantum tendrils</a> cannot currently go up or down, so must lie on a flat plane.
+
+  <h1 id="not"> Not Gate </h1>
+  <img src="31.png" alt="">
+  <a href = #not>Not gate</a> blocks act on the <a href = #block>qubit block</a> they are connected to. <a href = #not>Not gates</a> swap the probabilities of being on and off. They are activated by redstone.
+  <img src="32.png" alt="">
+  <div class=mathsbox>
+    <h2> Maths </h2>
+    The <a href = #not>not gate</a>  (and most other gates) can be represented by a matrix.
+    <img src="33.png" alt="">
+    When you apply the gate, you multiply the matrix for the gate by the <a href=#vector>vector</a> for the qubit.
+    <img src="34.png" alt="">
+  </div>
+
+  <h1 id="hadamard">Hadamard Gate</h1>
+  <img src="41.png" alt="">
+  <a href = #hadamard>Hadamard gate</a> blocks act on the <a href = #block>qubit block</a> they are connected to. <a href = #hadamard>hadamard gates</a> create/cancel basic superpositions. They are activated by redstone.
+  <img src="42.png" alt="">
+  If a qubit is originally 100% off, then the <a href = #hadamard>hadamard gate</a> will make it 50/50. Applying the <a href = #hadamard>hadamard gate</a> again will get the qubit back to 100% off.
+  <br>
+  If a qubit is 100% on, then the <a href = #hadamard>hadamard gate</a> will make it 50/50. Applying the <a href = #hadamard>hadamard gate</a> again will make the qubit 100% on again.
+  <img src="43.png" alt="">
+  <div class=mathsbox>
+    <h2> Maths </h2>
+    The <a href = #hadamard>hadamard gate</a> (and most other gates) can be represented by a matrix.
+    <img src="44.png" alt="">
+    When you apply the gate, you multiply the matrix for the gate by the <a href=#vector>vector</a> for the qubit.
+    <br>
+    Notice if you apply a <a href = #hadamard>hadamard gate</a> to (√0.5  𝑂𝐹𝐹+ √0.5  𝑂𝑁), the 𝑂𝑁s cancel, making the qubit 100% off.
+    <br>
+    Notice also that applying the <a href = #hadamard>hadamard gate</a> twice will always do nothing.
+    <img src="45.png" alt="">
+  </div>
+
+  <h1 id="control"> Gate Control </h1>
+  <img src="51.png" alt="">
+  Gate <a href = #control>controls</a> must be placed next to another gate (but not next to a measurement). The attached gate will now only act when the <a href = #block>qubit block</a> the <a href = #control>control</a> is attached to is on.
+  <br>
+  <a href = #control>controlled</a> <a href = #not>nots</a> can be used to entangle two qubits:
+  <img src="52.png" alt="">
+  In this setup, first, a <a href = #hadamard>hadamard gate</a> is applied to the bottom qubit, this creates a superposition of ON + OFF in the bottom qubit. A <a href = #control>controlled</a> <a href = #not>not</a> is then applied to the two qubits, and since the top qubit only changes when the bottom qubit is ON, the two qubits are now ON, ON or OFF, OFF. This is entanglement, where the two states aren’t independent of each other.
+  <div class=mathsbox>
+    <h2 id="multiqubit"> Maths </h2>
+    When there are two qubits involved instead of each being represented by a <a href=#vector>2d vector</a> we represent both in one 4d vector.
+    <img src="53.png" alt="">
+    Thus a <a href = #control>controlled</a> <a href = #not>not gate</a> can be written using the following matrix:
+    <img src="54.png" alt="">
+  </div>
+
+  <h1 id="measurement"> Measurement </h1>
+  <img src="61.png" alt="">
+  A <a href = #measurement>measurement</a> may be used to measure a <a href = #block>qubit block</a> and get a redstone output from a qubit. The <a href = #measurement>measurement</a> is updated when the redstone input is on, and the output of the <a href = #measurement>measurement</a> can be obtained using a comparator.
+</body>
