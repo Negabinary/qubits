@@ -1,6 +1,7 @@
 package negabinary.qubits.internal;
 
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public class Qubit {
@@ -16,7 +17,7 @@ public class Qubit {
         qubitID = 0;
     }
 
-    public QubitSystem getQubitSystem(World world) {
+    public QubitSystem getQubitSystem(IWorld world) {
         if (qubitSystem == null) {
             qubitSystem = systemHolderReference.getQubit(world).getQubitSystem(world);
         }
@@ -43,6 +44,8 @@ public class Qubit {
             } else {
                 qubitSystem = new QubitSystem(world, compound.getCompound("qubit_system"));
             }
+        } else {
+            qubitSystem = null;
         }
         qubitID = compound.getInt("qubit_id");
     }
@@ -57,9 +60,14 @@ public class Qubit {
         systemHolderReference.markDirty(world);
     }
 
-    public boolean applyMeasure(World world) {
+    public boolean applyMeasure(IWorld world) {
         boolean result = getQubitSystem(world).applyMeasure(qubitID, world);
         systemHolderReference.markDirty(world);
+        return result;
+    }
+
+    public boolean applyMeasureAndRemove(IWorld world) {
+        boolean result = getQubitSystem(world).applyMeasureAndRemove(qubitID, world);
         return result;
     }
 

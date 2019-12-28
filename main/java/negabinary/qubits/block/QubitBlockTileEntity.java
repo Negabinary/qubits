@@ -3,6 +3,7 @@ package negabinary.qubits.block;
 import negabinary.qubits.ModTileEntities;
 import negabinary.qubits.internal.BlockQubitReference;
 import negabinary.qubits.internal.Qubit;
+import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -43,5 +44,13 @@ public class QubitBlockTileEntity extends TileEntity {
 
     public Qubit getQubit() {
         return qubit;
+    }
+
+    public void remove() {
+        Qubit qubit = getQubit();
+        qubit.applyMeasureAndRemove(world);
+
+        this.removed = true;
+        this.invalidateCaps();
     }
 }

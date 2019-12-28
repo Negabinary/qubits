@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import negabinary.qubits.internal.Qubit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
@@ -16,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import negabinary.qubits.QubitsMod;
 import negabinary.qubits.block.QubitBlock;
@@ -65,8 +67,18 @@ public class TendrilPeripheralBlock extends Block {
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return updateTendrilConnections(stateIn, facing, false, facingState, worldIn, currentPos, facingPos);
+        return !this.isValidPosition(stateIn, worldIn, currentPos)
+                ? Blocks.AIR.getDefaultState()
+                : updateTendrilConnections(stateIn, facing, false, facingState, worldIn, currentPos, facingPos);
     }
+
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        BlockPos blockpos = pos.down();
+        BlockState blockstate = worldIn.getBlockState(blockpos);
+        return blockstate.func_224755_d(worldIn, blockpos, Direction.UP);
+    }
+
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         World world = context.getWorld();

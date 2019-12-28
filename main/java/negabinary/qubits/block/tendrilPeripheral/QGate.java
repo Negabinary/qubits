@@ -58,13 +58,6 @@ public abstract class QGate extends TendrilPeripheralBlock {
         return controlQubits.toArray(new Qubit[]{});
     }
 
-    @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        BlockPos blockPos = pos.down();
-        BlockState blockState = worldIn.getBlockState(blockPos);
-        return blockState.func_224755_d(worldIn, blockPos, Direction.UP);
-    }
-
     public abstract BlockState applyGate(BlockState blockState, BlockPos pos, World worldIn);
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

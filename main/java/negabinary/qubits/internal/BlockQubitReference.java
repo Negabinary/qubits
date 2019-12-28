@@ -1,8 +1,10 @@
 package negabinary.qubits.internal;
 
+import negabinary.qubits.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import negabinary.qubits.block.QubitBlock;
 import negabinary.qubits.block.QubitBlockTileEntity;
@@ -19,7 +21,7 @@ public class BlockQubitReference implements IQubitReference {
         pos = new BlockPos(compound.getInt("x"), compound.getInt("y"), compound.getInt("z"));
     }
 
-    public QubitBlockTileEntity getTileEntity(World world) {
+    public QubitBlockTileEntity getTileEntity(IWorld world) {
         if (tileEntity == null) {
             tileEntity = (QubitBlockTileEntity) world.getTileEntity(pos);
         }
@@ -33,18 +35,20 @@ public class BlockQubitReference implements IQubitReference {
         return pos;
     }
 
-    public void updateLocalState(double newState, World world) {
+    public void updateLocalState(double newState, IWorld world) {
         int litLevel = (int) Math.round(newState * 10);
 
         BlockState blockState = getTileEntity(world).getBlockState();
 
-        world.setBlockState(
-                getTileEntity(world).getPos(), blockState.with(QubitBlock.LIT_LEVEL, litLevel)
-        );
+        if (blockState.getBlock() == ModBlocks.QUBIT_BLOCK) {
+            world.setBlockState(
+                    getTileEntity(world).getPos(), blockState.with(QubitBlock.LIT_LEVEL, litLevel), 6
+            );
+        }
     }
 
     @Override
-    public void markDirty(World world) {
+    public void markDirty(IWorld world) {
         getTileEntity(world).markDirty();
     }
 
@@ -60,7 +64,7 @@ public class BlockQubitReference implements IQubitReference {
     }
 
     @Override
-    public Qubit getQubit(World world) {
+    public Qubit getQubit(IWorld world) {
         return getTileEntity(world).qubit;
     }
 }
