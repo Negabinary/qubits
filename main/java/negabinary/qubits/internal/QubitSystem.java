@@ -76,8 +76,9 @@ public class QubitSystem {
         } else {
             stateVector = stateVector.filter(qubitID, result);
             stateVector.normalize();
+            IQubitReference kickedQubit = qubitReferences.get(qubitID);
             kickQubit(qubitID, world);
-            createKickedSystem(qubitID, measuredQubitStateVector, world);
+            createKickedSystem(kickedQubit, measuredQubitStateVector, world);
         }
 
         return result;
@@ -109,9 +110,8 @@ public class QubitSystem {
         updateAll(world);
     }
 
-    private void createKickedSystem(int qubitID, StateVector newStateVector, IWorld world) {
+    private void createKickedSystem(IQubitReference kickedQubitReference, StateVector newStateVector, IWorld world) {
         //kicked system
-        IQubitReference kickedQubitReference = qubitReferences.get(qubitID);
         Qubit qubit = kickedQubitReference.getQubit(world);
         List<IQubitReference> newQubitReferences = new LinkedList<IQubitReference>();
         newQubitReferences.add(kickedQubitReference);
