@@ -17,7 +17,6 @@ public class ModItems {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(
-                new Item(new Item.Properties()).setRegistryName(QubitsMod.MOD_ID, "quantum_dust"),
                 new BlockItem(ModBlocks.QUBIT_BLOCK, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("qubit_block") ,
                 new BlockItem(ModBlocks.QUANTUM_TENDRIL, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("quantum_tendril"),
                 new BlockItem(ModBlocks.Q_NOT_GATE, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("q_not_gate"),

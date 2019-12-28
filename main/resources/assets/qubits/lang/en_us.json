@@ -1,4 +1,12 @@
 {
-  "item.qubits.quantum_dust": "Quantum Dust",
+  "block.qubits.qubit_block": "Qubit Block",
+  "block.qubits.quantum_tendril": "Quantum Tendril",
+  "block.qubits.q_not_gate": "Quantum Not Gate",
+  "block.qubits.q_h_gate": "Quantum Hadamard Gate",
+  "block.qubits.q_z_gate": "Quantum Z Gate",
+  "block.qubits.q_s_gate": "Quantum S Gate",
+  "block.qubits.q_t_gate": "Quantum T Gate",
+  "block.qubits.q_control": "Quantum Gate Control",
+  "block.qubits.q_measure_gate": "Quantum Measurement Gate",
   "commands.qubits.qlocal": "PONG!"
 }
