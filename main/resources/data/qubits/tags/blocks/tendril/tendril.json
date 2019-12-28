@@ -5,6 +5,9 @@
     "qubits:q_not_gate",
     "qubits:q_h_gate",
     "qubits:q_control",
-    "qubits:q_measure_gate"
+    "qubits:q_measure_gate",
+    "qubits:q_z_gate",
+    "qubits:q_s_gate",
+    "qubits:q_t_gate"
   ]
 }

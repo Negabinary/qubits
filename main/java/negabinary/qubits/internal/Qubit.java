@@ -60,6 +60,10 @@ public class Qubit {
         systemHolderReference.markDirty(world);
     }
 
+    public void applyGate(double ar, double ai, double br, double bi, double cr, double ci, double dr, double di, Qubit[] controlQubits, World world) {
+        getQubitSystem(world).applyGate(ar, ai, br, bi, cr, ci, dr, di, qubitID, getQubitIDs(controlQubits, world), world);
+    }
+
     public boolean applyMeasure(IWorld world) {
         boolean result = getQubitSystem(world).applyMeasure(qubitID, world);
         systemHolderReference.markDirty(world);
@@ -88,4 +92,6 @@ public class Qubit {
         }
         return qubitIDs;
     }
+
+
 }

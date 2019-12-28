@@ -57,6 +57,15 @@ public class QubitSystem {
         updateAll(world);
     }
 
+    public void applyGate(double ar, double ai, double br, double bi, double cr, double ci, double dr, double di,
+                          int qubitID, int[] controlIDs, World world) {
+        boolean[] controlValues = new boolean[controlIDs.length];
+        Arrays.fill(controlValues, true);
+        stateVector.applyGate(ar, ai, br, bi, cr, ci, dr, di,
+                qubitID, controlIDs, controlValues, world);
+        updateAll(world);
+    }
+
     public boolean applyMeasure(int qubitID, IWorld world) {
         boolean result = stateVector.sample(qubitID);
         StateVector measuredQubitStateVector = new StateVector(result);

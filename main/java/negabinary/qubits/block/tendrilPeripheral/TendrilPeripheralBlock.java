@@ -222,6 +222,12 @@ public class TendrilPeripheralBlock extends Block {
         getQubitBlockTileEntity(currentState, currentPos, world).qubit.applyH(controlQubits, world);
     }
 
+    public void applyGate(double ar, double ai, double br, double bi, double cr, double ci, double dr, double di,
+            BlockState currentState, BlockPos currentPos, Qubit[] controlQubits, World world) {
+        getQubitBlockTileEntity(currentState, currentPos, world).qubit
+                .applyGate(ar, ai, br, bi, cr, ci, dr, di, controlQubits, world);
+    }
+
     public boolean applyMeasure(BlockState currentState, BlockPos currentPos, World world) {
         return getQubitBlockTileEntity(currentState, currentPos, world).qubit.applyMeasure(world);
     }

@@ -18,6 +18,9 @@ public class ModBlocks {
     public static Block QUANTUM_TENDRIL;
     public static Block Q_NOT_GATE;
     public static Block Q_H_GATE;
+    public static Block Q_Z_GATE;
+    public static Block Q_S_GATE;
+    public static Block Q_T_GATE;
     public static Block Q_MEASURE_GATE;
     public static Block Q_CONTROL;
 
@@ -51,6 +54,27 @@ public class ModBlocks {
                         .harvestLevel(2)
                         .harvestTool(ToolType.PICKAXE))
                 .setRegistryName(QubitsMod.MOD_ID, "q_h_gate");
+        Q_Z_GATE = new QZGate(
+                (QubitBlock) QUBIT_BLOCK,
+                Block.Properties.create(Material.IRON)
+                        .hardnessAndResistance(5)
+                        .harvestLevel(2)
+                        .harvestTool(ToolType.PICKAXE))
+                .setRegistryName(QubitsMod.MOD_ID, "q_z_gate");
+        Q_S_GATE = new QSGate(
+                (QubitBlock) QUBIT_BLOCK,
+                Block.Properties.create(Material.IRON)
+                        .hardnessAndResistance(5)
+                        .harvestLevel(2)
+                        .harvestTool(ToolType.PICKAXE))
+                .setRegistryName(QubitsMod.MOD_ID, "q_s_gate");
+        Q_T_GATE = new QTGate(
+                (QubitBlock) QUBIT_BLOCK,
+                Block.Properties.create(Material.IRON)
+                        .hardnessAndResistance(5)
+                        .harvestLevel(2)
+                        .harvestTool(ToolType.PICKAXE))
+                .setRegistryName(QubitsMod.MOD_ID, "q_t_gate");
         Q_CONTROL = new QGateControl(
                 (QubitBlock) QUBIT_BLOCK,
                 Block.Properties.create(Material.IRON)
@@ -70,6 +94,9 @@ public class ModBlocks {
                 QUANTUM_TENDRIL,
                 Q_NOT_GATE,
                 Q_H_GATE,
+                Q_Z_GATE,
+                Q_S_GATE,
+                Q_T_GATE,
                 Q_CONTROL,
                 Q_MEASURE_GATE
         );

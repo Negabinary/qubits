@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "qubits:block/q_s_gate" }
+  }
+}

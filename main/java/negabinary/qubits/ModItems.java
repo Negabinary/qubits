@@ -22,6 +22,9 @@ public class ModItems {
                 new BlockItem(ModBlocks.QUANTUM_TENDRIL, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("quantum_tendril"),
                 new BlockItem(ModBlocks.Q_NOT_GATE, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("q_not_gate"),
                 new BlockItem(ModBlocks.Q_H_GATE, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("q_h_gate"),
+                new BlockItem(ModBlocks.Q_Z_GATE, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("q_z_gate"),
+                new BlockItem(ModBlocks.Q_S_GATE, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("q_s_gate"),
+                new BlockItem(ModBlocks.Q_T_GATE, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("q_t_gate"),
                 new BlockItem(ModBlocks.Q_CONTROL, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("q_control"),
                 new BlockItem(ModBlocks.Q_MEASURE_GATE, new Item.Properties().group(ItemGroup.REDSTONE)).setRegistryName("q_measure_gate")
         );
